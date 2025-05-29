@@ -10,7 +10,17 @@ self.addEventListener("push", e => {
       primaryKey: 1
     },
     icon: "images/logo.png",
-    vibrate: [100, 50, 100]
+    vibrate: [100, 50, 100],
+    action: [
+      {
+        action: "explore",
+        title: "Detayları Görüntüle"
+      },
+      {
+        action: "close",
+        title: "Kapat"
+      }
+    ]
   };
 
   if (self.registration) {

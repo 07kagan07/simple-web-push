@@ -8,7 +8,9 @@ self.addEventListener("push", e => {
     data: {
       dateOfArrival: Date.now(),
       primaryKey: 1
-    }
+    },
+    icon: "images/logo.png",
+    vibrate: [100, 50, 100]
   };
 
   if (self.registration) {

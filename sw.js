@@ -2,6 +2,7 @@ self.addEventListener("push", e => {
   console.log("event", e);
   console.log("event.data", e.data);
   console.log("event.data.text", e.data.text());
+  console.log("event.data.text", e.data.json());
 
   const config = {
     body: "Mesaj içeriği burada yer alacak.",

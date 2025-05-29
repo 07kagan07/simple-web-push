@@ -5,7 +5,7 @@ self.addEventListener("push", e => {
   console.log("event.data.text", e.data.json());
 
   const config = {
-    body: "Mesaj içeriği burada yer alacak.",
+    body: e.data.text() || "Detaylar için lütfen tıklayın.",
     data: {
       dateOfArrival: Date.now(),
       primaryKey: 1

@@ -1,4 +1,7 @@
 self.addEventListener("push", e => {
+  console.log("event", e);
+  console.log("event.data", e.data);
+
   const config = {
     body: "Mesaj içeriği burada yer alacak.",
     data: {

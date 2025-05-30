@@ -3,6 +3,11 @@ self.addEventListener("push", e => {
   console.log("event.data", e.data);
   console.log("event.data.text", e.data.text());
 
+  const { head, body } = e.data.json();
+
+  console.log("head", head);
+  console.log("body", body);
+
   const config = {
     body: e.data.text() || "Detaylar için lütfen tıklayın.",
     data: {

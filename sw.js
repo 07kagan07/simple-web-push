@@ -37,19 +37,27 @@ self.addEventListener("push", e => {
   }
 });
 
-self.addEventListener("notificationclick", e => {
-  console.log("notificationclick", e);
-  const notification = e.notification;
-  const action = e.action;
+self.addEventListener("notificationclick", function (event) {
+  event.notification.close(); // Bildirimi kapat
 
-  if (action === "explore") {
-    clients.openWindow(notification.data.url);
-  } else {
-    console.log("Notification closed");
-  }
+  // URL'yi al
+  const urlToOpen = event.notification.data?.url || "https://ornek-site.com";
 
-  notification.close();
+  // Kullanıcıda açık bir pencere varsa ona odaklan, yoksa yeni pencere aç
+  event.waitUntil(
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (clientList) {
+      for (const client of clientList) {
+        if (client.url === urlToOpen && "focus" in client) {
+          return client.focus();
+        }
+      }
+      if (clients.openWindow) {
+        return clients.openWindow(urlToOpen);
+      }
+    })
+  );
 });
+
 self.addEventListener("notificationclose", e => {
   console.log("notificationclose", e);
   const notification = e.notification;

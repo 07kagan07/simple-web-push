@@ -10,6 +10,7 @@ self.addEventListener("push", e => {
 
   const config = {
     body: body || "Detaylar için lütfen tıklayın.",
+    url: url || "https://google.com",
     data: {
       dateOfArrival: Date.now(),
       primaryKey: 1,
@@ -34,4 +35,23 @@ self.addEventListener("push", e => {
   } else {
     console.error("Service worker registration not found.");
   }
+});
+
+self.addEventListener("notificationclick", e => {
+  console.log("notificationclick", e);
+  const notification = e.notification;
+  const action = e.action;
+
+  if (action === "explore") {
+    clients.openWindow(notification.data.url);
+  } else {
+    console.log("Notification closed");
+  }
+
+  notification.close();
+});
+self.addEventListener("notificationclose", e => {
+  console.log("notificationclose", e);
+  const notification = e.notification;
+  console.log("Notification closed:", notification.data.primaryKey);
 });

@@ -12,9 +12,9 @@ self.addEventListener("push", e => {
     body: body || "Detaylar için lütfen tıklayın.",
     data: {
       dateOfArrival: Date.now(),
-      primaryKey: 1
+      primaryKey: 1,
+      url: url || "https://google.com"
     },
-    url: url || "https://google.com",
     icon: "images/logo.png",
     vibrate: [100, 50, 100],
     action: [

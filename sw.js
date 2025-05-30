@@ -3,7 +3,7 @@ self.addEventListener("push", e => {
   console.log("event.data", e.data);
   console.log("event.data.text", e.data.text());
 
-  const { head, body } = e.data.json();
+  const { head, body, url } = e.data.json();
 
   console.log("head", head);
   console.log("body", body);
@@ -14,6 +14,7 @@ self.addEventListener("push", e => {
       dateOfArrival: Date.now(),
       primaryKey: 1
     },
+    url: url || "https://google.com",
     icon: "images/logo.png",
     vibrate: [100, 50, 100],
     action: [
